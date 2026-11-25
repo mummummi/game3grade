@@ -434,7 +434,7 @@ return {
 
 })();
 const __M=(a,b)=>{const r=Object.assign({},a);['story','endText','title','combos','seqs'].forEach(k=>{if(b[k]!==undefined)r[k]=b[k]});r.items=Object.assign({},a.items||{},b.items||{});
- r.rooms=(a.rooms||[]).map((ra,i)=>{const rb=(b.rooms||[])[i];if(!rb)return ra;const o=Object.assign({},ra.o||{});
+ const NR=Math.max((a.rooms||[]).length,(b.rooms||[]).length);r.rooms=Array.from({length:NR},(_,i)=>{const ra=(a.rooms||[])[i]||{};const rb=(b.rooms||[])[i];if(!rb)return ra;const o=Object.assign({},ra.o||{});
   Object.entries(rb.o||{}).forEach(([id,p])=>{if(p===null){delete o[id];return}const base=p._new?{}:Object.assign({},o[id]||{});if(!o[id]&&!p._new&&!/^deco/.test(id))base._clear=false;Object.entries(p).forEach(([k,v])=>{if(k==='_new')return;base[k]=v});o[id]=base});
   const x=Object.assign({},ra,rb);x.o=o;return x});return r};
 return __M(__V2,__V3);
